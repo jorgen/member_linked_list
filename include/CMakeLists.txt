@@ -1,0 +1,2 @@
+add_library(MemberLinkedList INTERFACE)
+target_compile_features(MemberLinkedList INTERFACE cxx_deleted_functions)
