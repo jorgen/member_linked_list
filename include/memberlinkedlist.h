@@ -135,6 +135,8 @@ public:
     void push_front(T *data)
     {
         assert(data);
+        if (_first)
+          (_first->*Member)._prev = data;
         (data->*Member)._next = _first;
         _first = data;
         (data->*Member)._prev = nullptr;
@@ -176,9 +178,15 @@ public:
         T *newLast = (_last->*Member)._prev;
         (_last->*Member)._prev = nullptr;
         if (newLast)
+        {
+            _last = newLast;
             (newLast->*Member)._next = nullptr;
+        }
         else
+        {   _last = nullptr;
             _first = nullptr;
+        }
+
     }
 
     static const MemberListNode<T> &getListNode(const T *data)
