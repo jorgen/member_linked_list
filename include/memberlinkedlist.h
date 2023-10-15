@@ -149,7 +149,7 @@ public:
     void pop_front()
     {
         assert(_first);
-        T *next = _first->*Member._next;
+        T *next = (_first->*Member)._next;
         (_first->*Member)._next = nullptr;
         (_first->*Member)._prev = nullptr;
         _first = next;
@@ -172,7 +172,7 @@ public:
 
     void append(T *data) { push_back(data); }
 
-    void pop_bak()
+    void pop_back()
     {
         assert(_last);
         T *newLast = (_last->*Member)._prev;
